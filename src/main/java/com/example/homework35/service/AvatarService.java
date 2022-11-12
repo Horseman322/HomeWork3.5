@@ -30,7 +30,7 @@ public class AvatarService {
         byte[] data = multipartFile.getBytes();
         Avatar avatar = created(multipartFile.getSize(), multipartFile.getContentType(), data);
         String extension = Optional.ofNullable(multipartFile.getOriginalFilename())
-                .map(s -> "." + s.substring(multipartFile.getOriginalFilename().lastIndexOf(".")))
+                .map(s -> s.substring(multipartFile.getOriginalFilename().lastIndexOf(".")))
                 .orElse("");
         Path path = Paths.get(folderForAvatars).resolve(avatar.getId() + extension);
         Files.write(path, data);
